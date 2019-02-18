@@ -1,34 +1,37 @@
-const logDriverNames = function (drivers) {
-  drivers.forEach(function (driver) {
-    console.log(driver.name);
-  });
-};
-
-const logDriversByHometown = function (drivers, hometown) {
-  drivers.forEach(function (driver) {
-    if (driver.hometown === hometown) {
+const logDriverNames = function(driverArray) {
+  driverArray.forEach(function(driver) {
       console.log(driver.name);
-    }
   });
-};
+}
 
-const driversByRevenue = function (drivers) {
-  return drivers.slice().sort(function (driverOne, driverTwo) {
-    return driverOne.revenue - driverTwo.revenue;
+const logDriversByHometown = function(driverArray, location) {
+  driverArray.forEach(function(driver) {
+      if (driver.hometown === location) {
+          console.log(driver.name);
+      }
   });
-};
+}
 
-const driversByName = function (drivers) {
-  return drivers.slice().sort(function (driverOne, driverTwo) {
-    return driverOne.name.localeCompare(driverTwo.name);
+const driversByRevenue = function(driverArray) {
+  return driverArray.slice().sort(function(driverA, driverB) {
+      return driverA.revenue - driverB.revenue;
   });
-};
+}
 
-const totalRevenue = function (drivers) {
-  return drivers.reduce(function (total, currentDriver) {
-    return currentDriver.revenue + total;
+const driversByName = function(driverArray) {
+  return driverArray.slice().sort(function(driverA, driverB) {
+      return driverA.name.localeCompare(driverB.name);
+  });
+}
+
+const totalRevenue = function(driverArray) {
+  return driverArray.reduce(function(revenue, driver) {
+      return driver.revenue + revenue;
   }, 0);
-};
+}
 
-const averageRevenue = function (drivers) {
-  return totalRevenue(drivers) / drivers.length;
+const averageRevenue = function(driverArray) {
+  let total = totalRevenue(driverArray)
+
+  return total / driverArray.length;
+}
